@@ -3,7 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "iniparser.hpp"
+#include "IniParser.hpp"
 
 void create_example_ini_file(void);
 int  parse_ini_file(char * ini_name);

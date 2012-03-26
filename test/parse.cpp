@@ -3,7 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "iniparser.hpp"
+#include "IniParser.hpp"
 
 int main(int argc, char * argv[])
 {
