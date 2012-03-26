@@ -20,30 +20,25 @@ RANLIB = true
 
 RM      = rm -f
 
+SRCS = src/iniparser.cpp \
+	   src/IniParser.cpp
+OBJS = $(SRCS:.cpp=.o)
+HEADS = $(SRCS:.cpp=.hpp)
 
 # Implicit rules
 
-SUFFIXES = .o .cpp .hpp .a .so .sl
-
 COMPILE.cpp=$(CC) $(CFLAGS) -c
-.c.o:
+%.o: %.cpp $(HEADS)
 	@(echo "compiling $< ...")
 	@($(COMPILE.cpp) -o $@ $<)
 
-
-SRCS = src/iniparser.cpp \
-	   src/IniParser.cpp
-
-OBJS = $(SRCS:.cpp=.o)
-
-
 default:	libiniparser.a libiniparser.so
 
-libiniparser.a:	$(OBJS)
+libiniparser.a:	$(OBJS) $(HEADS)
 	@($(AR) $(ARFLAGS) libiniparser.a $(OBJS))
 	@($(RANLIB) libiniparser.a)
 
-libiniparser.so:	$(OBJS)
+libiniparser.so:	$(OBJS) $(HEADS)
 	@$(SHLD) $(LDSHFLAGS) -o $@.0 $(OBJS) $(LDFLAGS) \
 		-Wl,-soname=`basename $@`.0
 
