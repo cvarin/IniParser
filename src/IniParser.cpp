@@ -1,24 +1,4 @@
-/*-------------------------------------------------------------------------*/
-/**
-   @file    dictionary.c
-   @author  N. Devillard
-   @date    Sep 2007
-   @version $Revision: 1.27 $
-   @brief   Implements a dictionary for string variables.
-
-   This module implements a simple dictionary object, i.e. a list
-   of string/string associations. This object is useful to store e.g.
-   informations retrieved from a configuration file (ini files).
-*/
-/*--------------------------------------------------------------------------*/
-
-/*
-    $Id: dictionary.c,v 1.27 2007-11-23 21:39:18 ndevilla Exp $
-    $Revision: 1.27 $
-*/
-/*---------------------------------------------------------------------------
-                                Includes
- ---------------------------------------------------------------------------*/
+/******************************************************************************/
 #include "IniParser.hpp"
 
 #include <stdio.h>
@@ -34,6 +14,58 @@
 
 /** Invalid key token */
 #define DICT_INVALID_KEY    ((char*)-1)
+
+/******************************************************************************/
+/******************************************************************************/
+IniParser::IniParser(const char *ini_file)
+{
+     dic = iniparser_load(ini_file);
+     if(dic == NULL) 
+     {
+          fprintf(stderr, "cannot parse file: %s\n", ini_file);
+          abort();
+     }
+     dump(stderr);
+}
+
+/******************************************************************************/
+IniParser::~IniParser()
+{
+     iniparser_freedict(dic);
+}
+
+/******************************************************************************/
+/******************************************************************************/
+void IniParser::dump(FILE * f)
+/**
+  @brief    Dump a dictionary to an opened file pointer.
+  @param    d   Dictionary to dump.
+  @param    f   Opened file pointer to dump to.
+  @return   void
+
+  This function prints out the contents of a dictionary, one element by
+  line, onto the provided file pointer. It is OK to specify @c stderr
+  or @c stdout as output files. This function is meant for debugging
+  purposes mostly.
+ */
+{
+    int i;
+
+    if (dic==NULL || f==NULL) return ;
+    for (i=0 ; i<dic->size ; i++) {
+        if (dic->key[i]==NULL)
+            continue ;
+        if (dic->val[i]!=NULL) {
+            fprintf(f, "[%s]=[%s]\n", dic->key[i], dic->val[i]);
+        } else {
+            fprintf(f, "[%s]=UNDEF\n", dic->key[i]);
+        }
+    }
+    return ;
+}
+
+
+/******************************************************************************/
 
 /*---------------------------------------------------------------------------
                             Private functions
@@ -420,7 +452,7 @@ int main(int argc, char *argv[])
 */
 /*---------------------------- Includes ------------------------------------*/
 #include <ctype.h>
-#include "iniparser.hpp"
+#include "IniParser.hpp"
 
 /*---------------------------- Defines -------------------------------------*/
 #define ASCIILINESZ         (1024)
@@ -572,36 +604,6 @@ char * iniparser_getsecname(dictionary * d, int n)
         return NULL ;
     }
     return d->key[i] ;
-}
-
-/*-------------------------------------------------------------------------*/
-/**
-  @brief    Dump a dictionary to an opened file pointer.
-  @param    d   Dictionary to dump.
-  @param    f   Opened file pointer to dump to.
-  @return   void
-
-  This function prints out the contents of a dictionary, one element by
-  line, onto the provided file pointer. It is OK to specify @c stderr
-  or @c stdout as output files. This function is meant for debugging
-  purposes mostly.
- */
-/*--------------------------------------------------------------------------*/
-void iniparser_dump(dictionary * d, FILE * f)
-{
-    int     i ;
-
-    if (d==NULL || f==NULL) return ;
-    for (i=0 ; i<d->size ; i++) {
-        if (d->key[i]==NULL)
-            continue ;
-        if (d->val[i]!=NULL) {
-            fprintf(f, "[%s]=[%s]\n", d->key[i], d->val[i]);
-        } else {
-            fprintf(f, "[%s]=UNDEF\n", d->key[i]);
-        }
-    }
-    return ;
 }
 
 /*-------------------------------------------------------------------------*/

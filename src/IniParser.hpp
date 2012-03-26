@@ -240,21 +240,6 @@ void iniparser_dumpsection_ini(dictionary * d, char * s, FILE * f);
 
 /*-------------------------------------------------------------------------*/
 /**
-  @brief    Dump a dictionary to an opened file pointer.
-  @param    d   Dictionary to dump.
-  @param    f   Opened file pointer to dump to.
-  @return   void
-
-  This function prints out the contents of a dictionary, one element by
-  line, onto the provided file pointer. It is OK to specify @c stderr
-  or @c stdout as output files. This function is meant for debugging
-  purposes mostly.
- */
-/*--------------------------------------------------------------------------*/
-void iniparser_dump(dictionary * d, FILE * f);
-
-/*-------------------------------------------------------------------------*/
-/**
   @brief    Get the number of keys in a section of a dictionary.
   @param    d   Dictionary to examine
   @param    s   Section name of dictionary to examine
@@ -452,22 +437,12 @@ class IniParser
      public:
      dictionary *dic;
      
-     IniParser(const char *ini_file)
-     {
-          dic = iniparser_load(ini_file);
-          if(dic == NULL) 
-          {
-               fprintf(stderr, "cannot parse file: %s\n", ini_file);
-               abort();
-          }
-          iniparser_dump(dic,stderr);
-     };
+     IniParser(const char *ini_file);
+     ~IniParser();
      
-     ~IniParser()
-     {
-          iniparser_freedict(dic);
-     };
+     void dump(FILE * f);
      
+     private:
 };
 
 #endif

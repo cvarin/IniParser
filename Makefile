@@ -20,8 +20,7 @@ RANLIB = true
 
 RM      = rm -f
 
-SRCS = src/iniparser.cpp \
-	   src/IniParser.cpp
+SRCS = src/IniParser.cpp
 OBJS = $(SRCS:.cpp=.o)
 HEADS = $(SRCS:.cpp=.hpp)
 

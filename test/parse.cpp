@@ -15,7 +15,7 @@ int main(int argc, char * argv[])
     }
 
     IniParser ini(ini_name);
-    iniparser_dump(ini.dic, stdout);
+    ini.dump(stdout);
 
     return 0 ;
 }
