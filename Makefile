@@ -50,6 +50,10 @@ libiniparser.so:	$(OBJS)
 clean:
 	$(RM) $(OBJS)
 
+clean_all ca:
+	$(RM) $(OBJS) libiniparser.a libiniparser.so*
+	cd test ; $(MAKE) veryclean
+
 veryclean:
 	$(RM) $(OBJS) libiniparser.a libiniparser.so*
 	rm -rf ./html ; mkdir html
