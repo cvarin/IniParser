@@ -2,7 +2,7 @@
 # iniparser tests Makefile
 #
 
-CC      = gcc
+CC      = g++
 CFLAGS  = -g -I../src
 LFLAGS  = -L.. -liniparser
 AR	    = ar
@@ -14,11 +14,11 @@ default: all
 
 all: iniexample parse
 
-iniexample: iniexample.c
-	$(CC) $(CFLAGS) -o iniexample iniexample.c -I../src -L.. -liniparser
+iniexample: iniexample.cpp
+	$(CC) $(CFLAGS) -o iniexample iniexample.cpp -I../src -L.. -liniparser
 
-parse: parse.c
-	$(CC) $(CFLAGS) -o parse parse.c -I../src -L.. -liniparser
+parse: parse.cpp
+	$(CC) $(CFLAGS) -o parse parse.cpp -I../src -L.. -liniparser
 
 clean veryclean:
 	$(RM) iniexample example.ini parse

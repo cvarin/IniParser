@@ -3,7 +3,7 @@
 #
 
 # Compiler settings
-CC      = gcc
+CC      = g++
 CFLAGS  = -O2 -fPIC -Wall -ansi -pedantic
 
 # Ar settings to build the library
@@ -23,18 +23,18 @@ RM      = rm -f
 
 # Implicit rules
 
-SUFFIXES = .o .c .h .a .so .sl
+SUFFIXES = .o .cpp .hpp .a .so .sl
 
-COMPILE.c=$(CC) $(CFLAGS) -c
+COMPILE.cpp=$(CC) $(CFLAGS) -c
 .c.o:
 	@(echo "compiling $< ...")
-	@($(COMPILE.c) -o $@ $<)
+	@($(COMPILE.cpp) -o $@ $<)
 
 
-SRCS = src/iniparser.c \
-	   src/dictionary.c
+SRCS = src/iniparser.cpp \
+	   src/IniParser.cpp
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
 
 
 default:	libiniparser.a libiniparser.so
