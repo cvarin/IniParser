@@ -1,7 +1,7 @@
 Welcome to IniParser 
 
 This module offers a C++ class for parsing of ini files.
-It has been adapted from the C version iniParser -- version 3.0. 
+It's a fork of iniParser -- version 3.0, written in C. 
 See orignal message below.
 
 C. Varin
