@@ -23,7 +23,6 @@ IniParser::IniParser(const char *ini_file)
           fprintf(stderr, "cannot parse file: %s\n", ini_file);
           abort();
      }
-     dump(stderr);
 }
 
 /******************************************************************************/
