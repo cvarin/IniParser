@@ -6,7 +6,7 @@
 #include "IniParser.hpp"
 
 void create_example_ini_file(void);
-int  parse_ini_file(char * ini_name);
+int  parse_ini_file(const char * ini_name);
 
 int main(int argc, char * argv[])
 {
@@ -50,7 +50,7 @@ void create_example_ini_file(void)
 }
 
 
-int parse_ini_file(char * ini_name)
+int parse_ini_file(const char * ini_name)
 {
     /* Some temporary variables to hold query results */
     int             b ;

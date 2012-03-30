@@ -7,11 +7,11 @@
 
 int main(int argc, char * argv[])
 {
-    char *ini_name;
+    char ini_name[1000];
     if (argc<2) {
-        ini_name = "twisted.ini";
+        sprintf(ini_name,"twisted.ini");
     } else {
-        ini_name = argv[1] ;
+        sprintf(ini_name,"%s",argv[1]);
     }
 
     IniParser ini(ini_name);

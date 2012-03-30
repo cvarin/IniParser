@@ -161,7 +161,7 @@ int IniParser::find_entry(char *entry)
 }
 
 /******************************************************************************/
-int IniParser::getboolean(char * key, int notfound)
+int IniParser::getboolean(const char * key, int notfound)
 
 /**
   @brief    Get the string associated to a key, convert to a boolean
@@ -209,7 +209,7 @@ int IniParser::getboolean(char * key, int notfound)
 }
 
 /******************************************************************************/
-int IniParser::getint(char * key, int notfound)
+int IniParser::getint(const char * key, int notfound)
 /**
   @brief    Get the string associated to a key, convert to an int
   @param    key Key string to look for
@@ -243,7 +243,7 @@ int IniParser::getint(char * key, int notfound)
 }
 
 /******************************************************************************/
-double IniParser::getdouble(char * key, double notfound)
+double IniParser::getdouble(const char * key, double notfound)
 /**
   @brief    Get the string associated to a key, convert to a double
   @param    key Key string to look for
@@ -263,7 +263,7 @@ double IniParser::getdouble(char * key, double notfound)
 }
 
 /******************************************************************************/
-char * IniParser::getstring(char * key, char * def)
+char * IniParser::getstring(const char * key, char * def)
 /**
   @brief    Get the string associated to a key
   @param    key     Key string to look for
@@ -305,7 +305,7 @@ int IniParser::set(char * entry, char * val)
 }
 
 /******************************************************************************/
-char * IniParser::strlwc(char * s)
+char * IniParser::strlwc(const char * s)
 /**
   @brief    Convert a string to lowercase.
   @param    s   String to convert.

@@ -35,10 +35,10 @@ class IniParser
      
      void dump(FILE * f);
      void dump_ini(FILE * f);
-     int getboolean(char * key, int notfound);
-     int getint(char * key, int notfound);
-     double getdouble(char * key, double notfound);
-     char *getstring(char * key, char * def);
+     int getboolean(const char * key, int notfound);
+     int getint(const char * key, int notfound);
+     double getdouble(const char * key, double notfound);
+     char *getstring(const char * key, char * def);
      
      private:
      dictionary *dic;
@@ -64,7 +64,7 @@ class IniParser
      int set(char * entry, char * val);
      line_status iniparser_line(char * input_line, char * section, char * key, char * value);
      void *mem_double(void * ptr, int size);
-     char *strlwc(char * s);
+     char *strlwc(const char * s);
      char *strstrip(char * s);
      char *xstrdup(char * s);
 };
