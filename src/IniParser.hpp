@@ -38,7 +38,7 @@ class IniParser
      int getboolean(const char * key, int notfound);
      int getint(const char * key, int notfound);
      double getdouble(const char * key, double notfound);
-     char *getstring(const char * key, char * def);
+     char *getstring(const char * key, const char * def);
      
      private:
      dictionary *dic;

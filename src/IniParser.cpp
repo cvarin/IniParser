@@ -263,7 +263,7 @@ double IniParser::getdouble(const char * key, double notfound)
 }
 
 /******************************************************************************/
-char * IniParser::getstring(const char * key, char * def)
+char * IniParser::getstring(const char * key, const char * def)
 /**
   @brief    Get the string associated to a key
   @param    key     Key string to look for
@@ -281,11 +281,11 @@ char * IniParser::getstring(const char * key, char * def)
     char * sval ;
 
     if (dic==NULL || key==NULL)
-        return def ;
+        return (char*)def ;
 
     lc_key = strlwc(key);
-    sval = dictionary_get(dic, lc_key, def);
-    return sval ;
+    sval = dictionary_get(dic, lc_key, (char*)def);
+    return sval;
 }
 
 /******************************************************************************/
